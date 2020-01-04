@@ -1,0 +1,57 @@
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    background-color: rgb(179, 206, 170);
+}
+
+#left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    width: 30%;
+    height: 900px;/*temp so I can see panel*/
+    background-image: url('../img/hound.jpg');
+    opacity: 1;
+    background-size: 600px;
+    background-repeat: no-repeat;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+#search-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin: 20% 0% 10% 20%;
+    opacity: 1;
+}
+
+#search-form > label {
+    margin: 1rem 0rem .25rem 0rem;
+}
+
+#search-form > input {
+    height: 1rem;
+    width: 10rem;
+}
+
+#search-form > select {
+    height: 1.5rem;
+    width: 6rem;
+}
+
+#submit-btn {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 2rem;
+    width: 8rem;
+    margin: 2rem 0rem 0rem 0rem;
+}
+
+#right-panel {
+    width: 70%;
+    height: 900px; /* temp so I can see panel */
+}

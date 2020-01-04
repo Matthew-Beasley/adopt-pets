@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js" async></script>
+        <script src="./js/selectData.js"></script>
+        <script src="./js/app.js" defer></script>
+    </head>
+
+    <body>
+        <main>
+            <div id="left-panel">
+                <form id="search-form">
+                    <!-- controls for search and login -->
+                    <label for="species">Species</label>
+                    <input type="text" id="species" value="dog"></input>
+                    <label for="breed">Breed</label>
+                    <input type="text" id="breed" value="all"></input>
+                    <label for="male">Male</label>
+                    <input type="radio" id="male" name="gender" value="male"></input>
+                    <label for="female">Female</label>
+                    <input type="radio" id="female" name="gender" value="female"></input>
+                    <label for="both">Both</label>
+                    <input type="radio" id="both" name="gender" value="both" checked="checked"></input>
+                    <label for="size">Size</label>
+                    <select id="size" value="any" name="size">Size</select>
+                    <label for="age">Age</label>
+                    <select id="age" value="any" name="age"></select>
+                    <button type="button" id="submit-btn" value="submit">Submit</button>
+                </form>
+            </div>
+            <div id="right-panel">
+                <!-- generated code goes here (search results etc) need default pet listing -->
+            </div>
+        </main>
+    </body>
+
+</html>
