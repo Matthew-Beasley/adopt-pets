@@ -5,21 +5,20 @@ const SELECT_DATA =
     ],
 
     size: [
-        'small',
-        'medium',
-        'large'
+        'Small',
+        'Medium',
+        'Large'
     ],
 
     gender: [
-        'male',
-        'female'
+        'Male',
+        'Female'
     ],
 
     age: [
-        'puppy',
-        'adolescent',
-        'adult',
-        'senior'
+        'Young',
+        'Adult',
+        'Senior'
     ]
 };
 

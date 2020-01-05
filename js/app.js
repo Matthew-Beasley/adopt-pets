@@ -1,13 +1,36 @@
-const submit = document.querySelector('#submit-btn');
-const zip = document.querySelector('#location')
+const searchBtn = document.querySelector('#search-btn');
+const backBtn = document.querySelector('#back-btn');
+const zip = document.querySelector('#location');
 const species = document.querySelector('#species');
 const breed = document.querySelector('#breed');
-const sex = document.querySelector('input[name="gender"]:checked');
+const sex = document.querySelector('input[name="gender"]:checked'); //REFACTOR set up to use an if statement
 const size = document.querySelector('#size');
 const age = document.querySelector('#age');
 const rightPanel = document.querySelector('#right-panel');
 
 const baseUrl = 'https://api.rescuegroups.org/http/v2.json';
+
+const makePaginator = () => {
+    let page = 0;
+    return (direction) => {
+        if (direction === 'forward'){
+            page += 20;
+            return page;
+        } else if (page === 'back') {
+            if (page - 20 >= 0){
+                page -= 20;
+                return page;
+            } else if (page > 0) {
+                page = 0;
+                return page;
+            }
+        } else if (!direction) {
+            return page;
+        }
+    }
+}
+
+const paginate = makePaginator();
 
 const displaySearch = (results) => {
     if (species.value !== 'dog') {
@@ -17,31 +40,44 @@ const displaySearch = (results) => {
 
     const pets = results.data;
     console.log(pets)
-    let html = '<ul>'
+    let html = '<table>'
+
     for (let pet in pets) {
         if (pet){
-            html += `<li class="row-striped" >
-                        <img class="thumb" src="${pets[pet].animalPictures[0].urlSecureThumbnail}" />
-                        <h4>${pets[pet].animalName}</h4>
-                    </li>`
+            html += `<tr class="row-striped" >
+                        <td class="thumb-cell">
+                            <img class="thumb" src="${pets[pet].animalPictures[0].urlSecureThumbnail}" />
+                        </td>
+                        <td class="name-cell">
+                            <h4>${pets[pet].animalName}</h4>
+                        </td>
+                        <td class="data-cell">
+                            <div class="pet-data">
+                                <p>Gender: ${pets[pet].animalSex}</p>
+                                <p>Age: ${pets[pet].animalGeneralAge}</p>
+                                <p>Breed: ${pets[pet].animalPrimaryBreed}</p>
+                                <p>Location: ${pets[pet].animalLocationCitystate}</p>
+                            </div> 
+                        </td>
+                    </tr>`
         }
     }
-    html += '</ul>'
+    html += '</table>'
     rightPanel.innerHTML = html;
 }
 
-const createSearchObject = () => {
+const createSearchObject = (startPosition) => {
     const sex = document.querySelector('input[name="gender"]:checked');
-console.log(sex.value);
+    console.log(sex.value);
     const search = {
         apikey: '6QONihuq',
         objectType: 'animals',
         objectAction: 'publicSearch',
         search:
         {
-            resultStart: '0', //paginate here
-            resultLimit: '9',
-            resultSort: 'animalID',
+            resultStart: `${startPosition}`, //paginate here
+            resultLimit: '20',
+            resultSort: 'animalId',
             resultOrder: 'asc',
             filters:
                 [
@@ -69,6 +105,11 @@ console.log(sex.value);
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
+                    },
+                    {
+                        fieldName: 'animalGeneralAge',
+                        operation: 'equals',
+                        criteria: `${age.value}`
                     }
                 ],
             filterProcessing: '1',
@@ -83,8 +124,8 @@ console.log(sex.value);
     return search;
 }
 
-const makeAPISearchRequest = (() => {
-    const searchObject = createSearchObject();
+const makeAPISearchRequest = (startposition) => {
+    const searchObject = createSearchObject(startposition);
 
     const promise = new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
@@ -103,15 +144,29 @@ const makeAPISearchRequest = (() => {
     });
 
     return promise;
-})
-
-const submitSearch = (event) => {
-    event.preventDefault();
-    makeAPISearchRequest()
-    .then(response => displaySearch(response));
 }
 
-submit.addEventListener('click', submitSearch);
+const submitSearch = (event) => {
+    let start = paginate();
+    event.preventDefault();
+    makeAPISearchRequest(start)
+    .then(response => displaySearch(response));
+    paginate('forward');
+}
 
+const submitBack = (event) => {
+    let start = paginate();
+    event.preventDefault();
+    makeAPISearchRequest(start)
+    .then(response => displaySearch(response))
+    paginate('back');
+}
+
+searchBtn.addEventListener('click', submitSearch);
+backBtn.addEventListener('click', submitBack);
+window.addEventListener('load', () => {
+    makeAPISearchRequest(0)
+        .then(response => displaySearch(response));
+})
 
 ///// login path //////////
