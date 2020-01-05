@@ -2,44 +2,59 @@ const submit = document.querySelector('#submit-btn');
 const zip = document.querySelector('#location')
 const species = document.querySelector('#species');
 const breed = document.querySelector('#breed');
-const male = document.querySelector('#male');
-const female = document.querySelector('#female');
-const both = document.querySelector('#both');
+const sex = document.querySelector('input[name="gender"]:checked');
 const size = document.querySelector('#size');
 const age = document.querySelector('#age');
 const rightPanel = document.querySelector('#right-panel');
 
 const baseUrl = 'https://api.rescuegroups.org/http/v2.json';
 
-//////// initial search  //////////
 const displaySearch = (results) => {
+    if (species.value !== 'dog') {
+        rightPanel.innerHTML = '<h3>Sorry, under construction. Only dogs available at this time';
+        return;
+    }
+
     const pets = results.data;
     console.log(pets)
+    rightPanel.innerHTML = '';
     let html = '';
     for (let pet in pets) {
         if (pet){
-            console.log(pet);
-            html += `<h3>${pet.animalName}</h3>`
+            html += `<div class="card">
+                        <h3>${pets[pet].animalName}</h3>
+                        <img class="thumb" src="${pets[pet].animalPictures[0].urlSecureThumbnail ? pets[pet].animalPictures[0].urlSecureThumbnail : ''}" />
+                    </div>`
         }
     }
     rightPanel.innerHTML = html;
-
 }
 
 const createSearchObject = () => {
-
+    const sex = document.querySelector('input[name="gender"]:checked');
+console.log(sex.value);
     const search = {
         apikey: '6QONihuq',
         objectType: 'animals',
         objectAction: 'publicSearch',
         search:
         {
-            resultStart: '0',
-            resultLimit: '10',
+            resultStart: '0', //paginate here
+            resultLimit: '9',
             resultSort: 'animalID',
             resultOrder: 'asc',
             filters:
                 [
+                    {
+                        fieldName: 'animalSpecies',
+                        operation: 'equals',
+                        criteria: `${species.value}`
+                    },
+                    {
+                        fieldName: 'animalSex',
+                        operation: 'equals',
+                        criteria: `${sex.value}`
+                    },
                     {
                         fieldName: 'animalStatus',
                         operation: 'equals',
@@ -69,7 +84,6 @@ const createSearchObject = () => {
 }
 
 const makeAPISearchRequest = (() => {
-
     const searchObject = createSearchObject();
 
     const promise = new Promise((resolve, reject) => {
@@ -91,23 +105,13 @@ const makeAPISearchRequest = (() => {
     return promise;
 })
 
-// build search url
-
-// make api request
-
-// handle data, break into chunks (pages?)
-
-// display pets returned, in pages? on borderless cards
 const submitSearch = (event) => {
     event.preventDefault();
     makeAPISearchRequest()
     .then(response => displaySearch(response));
-    //console.log(promise, 'this is the promise in the event handler');
-
-    //buildSearchURL();
 }
 
-submit.addEventListener('click', submitSearch)
+submit.addEventListener('click', submitSearch);
 
 
 ///// login path //////////
