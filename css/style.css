@@ -55,24 +55,38 @@ main {
     box-sizing: border-box;
     width: 70%;
     height: 900px; /* temp so I can see panel */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
 
-.card {
+ul {
+    margin-top: 0rem;
+    padding: 0;
+    list-style-type: none;
+}
+
+.row-striped:nth-of-type(odd){
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 250px;
-    width: 32.75%;
-    height: 33%;
-    background-color: white;
-    border: 2px solid black;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    height: 100px;
+    background-color: #efefef;
+}
+
+.row-striped:nth-of-type(even){
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff;
+}
+
+h4 {
+    margin: 0rem 2rem 0rem 4rem;
 }
 
 .thumb {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
+    margin: 0rem 0rem 0rem 2rem;
 }

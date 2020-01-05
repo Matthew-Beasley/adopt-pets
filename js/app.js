@@ -17,16 +17,16 @@ const displaySearch = (results) => {
 
     const pets = results.data;
     console.log(pets)
-    rightPanel.innerHTML = '';
-    let html = '';
+    let html = '<ul>'
     for (let pet in pets) {
         if (pet){
-            html += `<div class="card">
-                        <h3>${pets[pet].animalName}</h3>
-                        <img class="thumb" src="${pets[pet].animalPictures[0].urlSecureThumbnail ? pets[pet].animalPictures[0].urlSecureThumbnail : ''}" />
-                    </div>`
+            html += `<li class="row-striped" >
+                        <img class="thumb" src="${pets[pet].animalPictures[0].urlSecureThumbnail}" />
+                        <h4>${pets[pet].animalName}</h4>
+                    </li>`
         }
     }
+    html += '</ul>'
     rightPanel.innerHTML = html;
 }
 
