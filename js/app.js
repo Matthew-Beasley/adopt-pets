@@ -84,7 +84,7 @@ const displayDetail = (results, id) => {
     </div>
     <div class="detail-box">`
     for (let detail in pet) {
-        if (pet[detail] !== '') {
+        if (pet[detail] !== '' && detail !== 'animalDescriptionPlain') {
             console.log('pet', pet[detail]);
             html += `<p><strong>${detail}:</strong>  ${pet[detail]}</p>`
         }
