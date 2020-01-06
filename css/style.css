@@ -67,6 +67,10 @@ tr {
     list-style-type: none;
 }
 
+.animalId {
+    display: none;
+}
+
 .row-striped:nth-of-type(odd){
     display: flex;
     flex-direction: row;
@@ -91,6 +95,7 @@ h4 {
 
 .thumb-cell {
     width: 150px;
+    cursor: pointer;
 }
 
 .name-cell {

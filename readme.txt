@@ -2,6 +2,8 @@ rescueGroups.org:
 API docs: 
 Your API Key: 6QONihuq
 
+surge url: adopt-a-pet.surge.sh
+
 request url: https://api.rescuegroups.org/http/v2.json
 
 https://rescuegroups.org/services/adoptable-pet-data-api/
@@ -77,4 +79,23 @@ const makeAPIRequest = () => {
         .then(response => console.log(response));
     console.log(promise);
 }
-*/
+
+
+const makePaginator = () => {
+    let page = 0;
+    return (direction) => {
+        if (direction === 'forward'){
+            page += 20;
+            return page;
+        } else if (direction === 'back') {
+            if (page - 20 >= 0){
+                page -= 20;
+                return page;
+            } else {
+                return 0;
+            }
+        } else if (!direction) {
+            return page;
+        }
+    }
+}
