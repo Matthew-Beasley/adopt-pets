@@ -4,7 +4,7 @@ main {
     flex-direction: row;
     justify-content: left;
     width: 100%;
-    background-color: rgb(179, 206, 170);
+    background-color: white;
 }
 
 #left-panel {
@@ -14,7 +14,6 @@ main {
     width: 30%;
     height: 900px;/*temp so I can see panel*/
     background-image: url('../img/hound.jpg');
-    opacity: 1;
     background-size: 600px;
     background-repeat: no-repeat;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -56,9 +55,9 @@ button {
     width: 70%;
     height: 900px; /* temp so I can see panel */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    max-height: 900px;/*The important part*/
-    overflow-y: auto;/*Also...*/
-    overflow-x: hidden;/*And the end of the important part*/
+    max-height: 900px; /* these three lines make content scroll*/
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 tr {
@@ -121,6 +120,35 @@ h4 {
 }
 
 .pet-data > p {
+    margin: 0;
+    padding: 0;
+}
+
+/* for details view */
+#right-pane {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.large-image-box {
+    width: fit-content;
+    height: fit-content;
+    margin: 1rem 1rem 1rem 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.detail-box {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 3rem;
+}
+
+.detail-box > p {
     margin: 0;
     padding: 0;
 }

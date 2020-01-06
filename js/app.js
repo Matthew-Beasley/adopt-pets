@@ -73,6 +73,27 @@ const displaySearch = (results) => {
     rightPanel.innerHTML = html;
 }
 
+const displayDetail = (results, id) => {
+    const pet = results.data[id];
+    let html =
+    '<div class="large=image-box">'
+    pet.animalPictures.forEach(pic => {
+       html += `<img src="${pic.urlSecureFullsize}" />`
+    } )
+    html += `
+    </div>
+    <div class="detail-box">`
+    for (let detail in pet) {
+        if (pet[detail] !== '') {
+            console.log('pet', pet[detail]);
+            html += `<p><strong>${detail}:</strong>  ${pet[detail]}</p>`
+        }
+    }
+    html += '</div>'
+    //TO DO: Use results to generate html for large image and details
+    rightPanel.innerHTML = html;
+}
+
 const createSearchObject = (startPosition) => {
     console.log(startPosition);
     let gender;
@@ -208,17 +229,11 @@ const makeAPISearchRequest = (startposition, searchType, id) => {
     return promise;
 }
 
-const displayDetail = (results) => {
-    console.log('Im in the display function!')
-    //TO DO: Use results to generate html for large image and details
-}
-
 const submitDetail = ({ target }) => {
     console.log(target);
     const animalId = target.nextSibling.nextSibling.innerHTML;
-    console.log(animalId);
     makeAPISearchRequest(0, 'details', animalId)
-        .then(response => displayDetail(response));
+        .then(response => displayDetail(response, animalId));
 
 }
 
