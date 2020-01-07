@@ -215,9 +215,14 @@ h4 {
     }
 
     #right-panel {
+        position: relative;
         display: flex;
         flex-direction: column;
         width: 120%;
+        max-height: 900px; /* these three lines make content scroll*/
+        overflow-y: auto;
+        overflow-x: hidden;
+
     }
 
     table {
