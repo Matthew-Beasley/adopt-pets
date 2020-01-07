@@ -94,8 +94,8 @@ const displayDetail = (results, id) => {
     for (let detail in pet) {
         if (pet[detail] !== '' && detail !== 'animalDescriptionPlain') {
             // trim animal off of detail string
-            detail = detail.substr(6);
-            html += `<p><strong>${detail}:</strong>  ${pet[detail]}</p>`
+            let trimmedDetail = detail.substr(6);
+            html += `<p><strong>${trimmedDetail}:</strong>  ${pet[detail]}</p>`
         }
     }
     html += '</div>'
