@@ -19,24 +19,29 @@
                 <form id="search-form">
                     <h2>Adopt a Pet</h2>
                     <!-- controls for search and login -->
-                    <label for="species">Species</label>
-                    <input type="text" id="species" value="dog"></input>
-                    <label for="breed">Breed</label>
-                    <input type="text" id="breed" value=""></input>
-                    <label for="location">Zipcode</label>
-                    <input type="text" id="location" value=""></input>
                     <label for="male">Male</label>
                     <input type="radio" id="male" name="gender" value="Male"></input>
                     <label for="female">Female</label>
                     <input type="radio" id="female" name="gender" value="Female"></input>
                     <label for="both">Both</label>
                     <input type="radio" id="both" name="gender" value="Both" checked="checked"></input>
+
                     <label for="size">Size</label>
                     <select id="size" value="any" name="size">Size</select>
                     <label for="age">Age</label>
                     <select id="age" value="any" name="age"></select>
+                    <label for="species">Species *</label>
+                    <input type="text" id="species" value="dog"></input>
+                    <label for="breed">Breed</label>
+                    <input type="text" id="breed" value=""></input>
+                    <label for="location">Zipcode *</label>
+                    <input type="text" id="location" value=""></input>
+
+                    <label for="searchj-type">Search Type</label>
+                    <select id="search-type" value="location" name="search-type"></select>
                     <button type="submit" id="search-btn" value="search">Search</button>
                     <button type="submit" id="back-btn" value="back">Back</button>
+                    <p>* required field</p>
                 </form>
             </div>
             <div id="right-panel">

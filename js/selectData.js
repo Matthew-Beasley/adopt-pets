@@ -19,6 +19,13 @@ const SELECT_DATA =
         'Young',
         'Adult',
         'Senior'
+    ],
+    searchType: [
+        'zipcode',
+        'gender',
+        'breed',
+        'size',
+        'age'
     ]
 };
 
@@ -35,10 +42,11 @@ const buildASelect = (select, data) => {
 }
 
 const populateSelects = () => {
-
+    const searchType = document.querySelector('#search-type');
     const age = document.querySelector('#age');
     const size = document.querySelector('#size');
 
+    buildASelect(searchType, SELECT_DATA.searchType);
     buildASelect(size, SELECT_DATA.size);
     buildASelect(age, SELECT_DATA.age);
 }

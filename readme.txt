@@ -99,3 +99,70 @@ const makePaginator = () => {
         }
     }
 }
+
+
+const search = {
+        apikey: '6QONihuq',
+        objectType: 'animals',
+        objectAction: 'publicSearch',
+        search:
+        {
+            resultStart: `${startPosition}`,
+            resultLimit: '20',
+            resultSort: 'animalCreatedDate',
+            resultOrder: 'desc',
+            filters:
+                [
+                    {
+                        fieldName: 'animalSpecies',
+                        operation: 'equals',
+                        criteria: `${species.value}`
+                    },
+                    {
+                        fieldName: 'animalSex',
+                        operation: 'equals',
+                        criteria: `${gender.value}`
+                    },
+                    {
+                        fieldName: 'animalStatus',
+                        operation: 'equals',
+                        criteria: 'Available'
+                    },
+                    {
+                        fieldName: 'animalLocationDistance',
+                        operation: 'radius',
+                        criteria: '50'
+                    },
+                    {
+                        fieldName: 'animalLocation',
+                        operation: 'equals',
+                        criteria: `${zip.value}`
+                    },
+                    {
+                        fieldName: 'animalGeneralAge',
+                        operation: 'equals',
+                        criteria: `${age.value}`
+                    },
+                    {
+                        fieldName: 'animalSex',
+                        operation: 'equals',
+                        criteria: `${gender}`
+                    },
+                    {
+                        fieldName: 'animalBreed',
+                        operation: 'equals',
+                        criteria: `${breed.value}`
+                    }
+
+                ],
+            filterProcessing: '1',
+            fields:
+                [
+                    'animalID', 'animalOrgID', 'animalActivityLevel', 'animalAdoptedDate', 'animalAdoptionFee', 'animalAgeString', 'animalAltered', 'animalAvailableDate', 'animalBirthdate', 'animalBirthdateExact', 'animalBreed', 'animalCoatLength', 'animalColor', 'animalColorID', 'animalColorDetails', 'animalCourtesy', 'animalDeclawed', 'animalDescription', 'animalDescriptionPlain', 'animalDistinguishingMarks', 'animalEarType', 'animalEnergyLevel', 'animalExerciseNeeds', 'animalEyeColor', 'animalFence', 'animalFound', 'animalFoundDate', 'animalFoundPostalcode', 'animalGeneralAge', 'animalGeneralSizePotential', 'animalGroomingNeeds', 'animalHousetrained', 'animalIndoorOutdoor', 'animalKillDate', 'animalKillReason', 'animalLocation', 'animalLocationCoordinates', 'animalLocationDistance', 'animalLocationCitystate', 'animalMicrochipped', 'animalMixedBreed', 'animalName', 'animalSpecialneeds', 'animalSpecialneedsDescription', 'animalNeedsFoster', 'animalNewPeople', 'animalNotHousetrainedReason', 'animalObedienceTraining', 'animalOKWithAdults', 'animalOKWithCats', 'animalOKWithDogs', 'animalOKWithKids', 'animalOwnerExperience', 'animalPattern', 'animalPatternID', 'animalAdoptionPending', 'animalPrimaryBreed', 'animalPrimaryBreedID', 'animalRescueID', 'animalSearchString', 'animalSecondaryBreed', 'animalSecondaryBreedID', 'animalSex', 'animalShedding', 'animalSizeCurrent', 'animalSizePotential', 'animalSizeUOM', 'animalSpecies', 'animalSpeciesID', 'animalSponsorable', 'animalSponsors', 'animalSponsorshipDetails', 'animalSponsorshipMinimum', 'animalStatus', 'animalStatusID', 'animalSummary', 'animalTailType', 'animalThumbnailUrl', 'animalUptodate', 'animalUpdatedDate', 'animalUrl', 'animalVocal', 'animalYardRequired', 'animalAffectionate', 'animalApartment', 'animalCratetrained', 'animalDrools', 'animalEagerToPlease', 'animalEscapes', 'animalEventempered', 'animalFetches', 'animalGentle', 'animalGoodInCar', 'animalGoofy', 'animalHasAllergies', 'animalHearingImpaired', 'animalHypoallergenic', 'animalIndependent', 'animalIntelligent', 'animalLap', 'animalLeashtrained', 'animalNeedsCompanionAnimal', 'animalNoCold', 'animalNoFemaleDogs', 'animalNoHeat', 'animalNoLargeDogs', 'animalNoMaleDogs', 'animalNoSmallDogs', 'animalObedient', 'animalOKForSeniors', 'animalOKWithFarmAnimals', 'animalOlderKidsOnly', 'animalOngoingMedical', 'animalPlayful', 'animalPlaysToys', 'animalPredatory', 'animalProtective', 'animalSightImpaired', 'animalSkittish', 'animalSpecialDiet', 'animalSwims', 'animalTimid', 'fosterEmail', 'fosterFirstname', 'fosterLastname', 'fosterName', 'fosterPhoneCell', 'fosterPhoneHome', 'fosterSalutation', 'locationAddress', 'locationCity', 'locationCountry', 'locationUrl', 'locationName', 'locationPhone', 'locationState', 'locationPostalcode', 'animalPictures', 'animalVideos', 'animalVideoUrls'
+                ]
+
+        }
+
+    }
+    return search;
+}
