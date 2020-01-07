@@ -113,9 +113,14 @@ const createAgeObject = (startPosition) => {
             resultStart: `${startPosition}`,
             resultLimit: '20',
             resultSort: 'animalCreatedDate',
-            resultOrder: 'desc',
+            resultOrder: 'asc',
             filters:
                 [
+                    {
+                        fieldName: 'animalGeneralAge',
+                        operation: 'equals',
+                        criteria: `${age.value}`
+                    },
                     {
                         fieldName: 'animalSpecies',
                         operation: 'equals',
@@ -130,11 +135,6 @@ const createAgeObject = (startPosition) => {
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
-                    },
-                    {
-                        fieldName: 'animalGeneralAge',
-                        operation: 'equals',
-                        criteria: `${age.value}`
                     }
                 ],
             filterProcessing: '1',
@@ -171,9 +171,14 @@ const createGenderObject = (startPosition) => {
             resultStart: `${startPosition}`,
             resultLimit: '20',
             resultSort: 'animalCreatedDate',
-            resultOrder: 'desc',
+            resultOrder: 'asc',
             filters:
                 [
+                    {
+                        fieldName: 'animalSex',
+                        operation: 'equals',
+                        criteria: `${sex}`
+                    },
                     {
                         fieldName: 'animalSpecies',
                         operation: 'equals',
@@ -188,11 +193,6 @@ const createGenderObject = (startPosition) => {
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
-                    },
-                    {
-                        fieldName: 'animalSex',
-                        operation: 'equals',
-                        criteria: `${sex}`
                     }
                 ],
             filterProcessing: '1',
@@ -218,9 +218,14 @@ const createSizeObject = (startPosition) => {
             resultStart: `${startPosition}`,
             resultLimit: '20',
             resultSort: 'animalCreatedDate',
-            resultOrder: 'desc',
+            resultOrder: 'asc',
             filters:
                 [
+                    {
+                        fieldName: 'animalSize',
+                        operation: 'equals',
+                        criteria: `${size.value}`
+                    },
                     {
                         fieldName: 'animalSpecies',
                         operation: 'equals',
@@ -235,11 +240,6 @@ const createSizeObject = (startPosition) => {
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
-                    },
-                    {
-                        fieldName: 'animalSize',
-                        operation: 'equals',
-                        criteria: `${size.value}`
                     }
                 ],
             filterProcessing: '1',
@@ -266,13 +266,18 @@ const createBreedObject = (startPosition) => {
             resultStart: `${startPosition}`,
             resultLimit: '20',
             resultSort: 'animalCreatedDate',
-            resultOrder: 'desc',
+            resultOrder: 'asc',
             filters:
                 [
                     {
                         fieldName: 'animalSpecies',
                         operation: 'equals',
                         criteria: `${species.value}`
+                    },
+                    {
+                        fieldName: 'animalBreed',
+                        operation: 'equals',
+                        criteria: `${breed.value}`
                     },
                     {
                         fieldName: 'animalLocationDistance',
@@ -283,11 +288,6 @@ const createBreedObject = (startPosition) => {
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
-                    },
-                    {
-                        fieldName: 'animalBreed',
-                        operation: 'equals',
-                        criteria: `${breed.value}`
                     }
                 ],
             filterProcessing: '1',
@@ -313,7 +313,7 @@ const createZipcodeObject = (startPosition) => {
             resultStart: `${startPosition}`,
             resultLimit: '20',
             resultSort: 'animalCreatedDate',
-            resultOrder: 'desc',
+            resultOrder: 'asc',
             filters:
                 [
                     {
@@ -322,14 +322,14 @@ const createZipcodeObject = (startPosition) => {
                         criteria: `${species.value}`
                     },
                     {
-                        fieldName: 'animalLocationDistance',
-                        operation: 'radius',
-                        criteria: '75'
-                    },
-                    {
                         fieldName: 'animalLocation',
                         operation: 'equals',
                         criteria: `${zip.value}`
+                    },
+                    {
+                        fieldName: 'animalLocationDistance',
+                        operation: 'radius',
+                        criteria: '75'
                     }
                 ],
             filterProcessing: '1',
@@ -378,8 +378,6 @@ const createIDObject = (animalId) => {
 const makeAPISearchRequest = (startposition, detailSearch, id) => {
 
     let searchObject;
-    console.log(searchType.value);
-    console.log(startposition);
     if (detailSearch === 'details') {
         searchObject = createIDObject(id)
     }
